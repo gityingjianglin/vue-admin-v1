@@ -1185,13 +1185,15 @@ export default {
       this.queryParams.clientId = ''
       if (val) {
         let clientList = this.AppList.filter(x => x.appId === val)[0].clientList
-        for (let i = 0, length = clientList.length; i < length; i++) {
+        /* for (let i = 0, length = clientList.length; i < length; i++) {
           if (clientList[i].clientCode === 'FA001601') {
             this.clientList = [clientList[i]]
             break
           }
-        }
-        this.queryParams.clientId = this.clientList[0].clientId
+        } */
+        // 修复获取所有客户端的配置
+        this.clientList = clientList
+        this.queryParams.clientId = this.clientList[0] && this.clientList[0].clientId
         this.getList();
         // this.clientList = this.AppList.filter(x => x.appId === val)[0].clientList
       } else {
